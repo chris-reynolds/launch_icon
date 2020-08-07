@@ -6,7 +6,7 @@ repository: https://github.com/chris-reynolds/launch_icon
 environment:
   sdk: '>=2.7.0 <3.0.0'
 executables:
-  launch_icon: launch_icon.dart
+  launch_icon: launch_icon
 dependencies:
   image: ^2.1.14
 #  path: ^1.6.0
