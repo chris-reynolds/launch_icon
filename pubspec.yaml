@@ -2,10 +2,11 @@ name: launch_icon
 description: This scans for *.png files so that flutter launch_icons on different platforms are updated.
 version: 0.1.0
 homepage: https://www.retired.kiwi
-
+repository: https://github.com/chris-reynolds/launch_icon
 environment:
   sdk: '>=2.7.0 <3.0.0'
-
+executables:
+  launch_icon: launch_icon.dart
 dependencies:
   image: ^2.1.14
 #  path: ^1.6.0
