@@ -1,0 +1,29 @@
+name: launch_icon
+description: This scans for *.png files so that flutter launch_icons on different platforms are updated.
+version: 0.1.0
+homepage: https://www.retired.kiwi
+
+environment:
+  sdk: '>=2.7.0 <3.0.0'
+
+dependencies:
+  image: ^2.1.14
+#  path: ^1.6.0
+  yaml: ^2.2.1
+
+dev_dependencies:
+  pedantic: ^1.8.0
+  test: ^1.6.0
+
+launch_icon_1:
+  source: test/assets/album_icon.png
+  target:
+    - test/../album*.png
+    - test/../AppIcon*.png
+    - test/../favicon.png
+
+launch_icon_2:
+  source: test/assets/album_icon.png
+  target:
+    - test/../ic_launcher*.png
+
