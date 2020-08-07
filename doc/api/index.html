@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 0.32.1">
+  <meta name="description" content="launch_icon API docs, for the Dart programming language.">
+  <title>launch_icon - Dart API docs</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+
+</head>
+
+<body data-base-href=""
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://www.retired.kiwi">launch_icon package</a></li>
+  </ol>
+  <div class="self-name">launch_icon</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="https://www.retired.kiwi">launch_icon package</a></li>
+    </ol>
+    
+    <h5 class="hidden-xs"><span class="package-name">launch_icon</span> <span class="package-kind">package</span></h5>
+    <ol>
+          <li class="section-title">Libraries</li>
+          <li><a href="launch_icon/launch_icon-library.html">launch_icon</a></li>
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <section class="desc markdown">
+        <h1 id="launch_icon">launch_icon</h1>
+<p>A command-line app to help change a flutter application icon regardless of platform.</p>
+<p>Each platform seems to have several copies of the application icon at different sizes.</p>
+<p>The launch_icon utility searches for images in a flutter project that that match some target wild-card specfication<br>
+and then for each matching image, it reads the width and height and replaces the image<br>
+with a clone of the source iamge resized to match the target.</p>
+<p>The source and target file specifications are read from the pubspec.yaml file and any sections that start with
+'launch_icon' will be examined for source and targets.</p>
+<p>Below is simple example of an icon being push across android,ios,macos and web.</p>
+<pre class="language-dart"><code>    launch_icon:
+      source: ../aopicons/album2_icon.png
+      target:
+        - */AppIcon*.png
+        - web/*/Icon*.png
+        - web/favicon.png
+        - android/*/ic_launcher*.png
+        
+        
+</code></pre>
+<p>If you required different icons on different platforms, the launch_icon utility
+will parse multiple sections in pubspec.yaml as seen below.</p>
+<pre class="language-dart"><code>launch_icon_ios_macos_and_web:
+  source: ../aopicons/album2_icon.png
+  target:
+    - */AppIcon*.png
+    - web/*/Icon*.png
+    - web/favicon.png
+
+launch_icon_android:
+  source: ../aopicons/album2_icon.png
+  target:
+    - android/*/ic_launcher*.png
+    
+</code></pre>
+<h3 id="note">Note</h3>
+<ol>
+<li>
+<p>These paths were correct for Flutter 1.21.0 but of course you may need to adapt the paths as
+the different platforms mature.</p>
+</li>
+<li>
+<p>The utility must be run from the flutter project root. (i.e. a local pubspec.yaml must exist)</p>
+</li>
+<li>
+<p>All image manipulation is courtesy of package 'image' by Brendan Duncan and those are the file types supported.</p>
+</li>
+</ol>
+      </section>
+      
+        <section class="summary">
+            <h2>Libraries</h2>
+          <dl>
+            <dt id="launch_icon">
+              <span class="name"><a href="launch_icon/launch_icon-library.html">launch_icon</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+          </dl>
+        </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    launch_icon
+      0.1.0
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

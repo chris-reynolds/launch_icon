@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the driver function from the launch_icon library, for the Dart programming language.">
+  <title>driver function - launch_icon library - Dart API</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../static-assets/github.css">
+  <link rel="stylesheet" href="../static-assets/styles.css">
+  <link rel="icon" href="../static-assets/favicon.png">
+
+</head>
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">launch_icon</a></li>
+    <li><a href="../launch_icon/launch_icon-library.html">launch_icon</a></li>
+    <li class="self-crumb">driver function</li>
+  </ol>
+  <div class="self-name">driver</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="../index.html">launch_icon</a></li>
+      <li><a href="../launch_icon/launch_icon-library.html">launch_icon</a></li>
+      <li class="self-crumb">driver function</li>
+    </ol>
+    
+    <h5>launch_icon library</h5>
+    <ol>
+    
+    
+    
+      <li class="section-title"><a href="../launch_icon/launch_icon-library.html#constants">Constants</a></li>
+      <li><a href="../launch_icon/PUBSPEC-constant.html">PUBSPEC</a></li>
+    
+    
+      <li class="section-title"><a href="../launch_icon/launch_icon-library.html#functions">Functions</a></li>
+      <li><a href="../launch_icon/driver.html">driver</a></li>
+      <li><a href="../launch_icon/loadAndValidatePubspecYaml.html">loadAndValidatePubspecYaml</a></li>
+      <li><a href="../launch_icon/loadSourceImage.html">loadSourceImage</a></li>
+      <li><a href="../launch_icon/matchPaths.html">matchPaths</a></li>
+      <li><a href="../launch_icon/replaceIcon.html">replaceIcon</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-function">driver</span> function  </h1></div>
+
+    <section class="multi-line-signature">
+        <span class="returntype">void</span>
+                <span class="name ">driver</span>
+(<wbr><ol class="parameter-list"><li><span class="parameter" id="driver-param-arguments"><span class="type-annotation"><a href="https://api.dart.dev/edge/2.10.0-edge.bd528bfbd69deecd3e8ad21e634da495bf0c09bb/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/edge/2.10.0-edge.bd528bfbd69deecd3e8ad21e634da495bf0c09bb/dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">arguments</span></span></li>
+</ol>)
+    </section>
+    <section class="desc markdown">
+      <p>main entry of command line utility
+It loads the pubspec.yaml sections looking for source and target file specifications.
+For each file that matches a target file specitication, it will be overwritten with a
+resized version of the source icon.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">void driver(List&lt;String&gt; arguments) {
+  try {
+    var iconSectionList = loadAndValidatePubspecYaml();
+    var fullFileList = Directory(&#39;.&#39;).listSync(recursive: true);
+    for (var iconSection in iconSectionList) {
+      String source = iconSection[&#39;source&#39;];
+      List&lt;dynamic&gt; targets = iconSection[&#39;target&#39;].toList();
+      print(&#39;\nLaunch Icon : $source \n to  $targets}!&#39;);
+      var sourceImg = loadSourceImage(source);
+      for (var target in targets) {
+        var fileList = fullFileList.where((element) =&gt; matchPaths(element.path, target));
+        if (fileList.isEmpty) print(&#39;No files matching $target&#39;);
+        for (var targetFile in fileList) {
+          replaceIcon(sourceImg, targetFile.path);
+        }  &#47;&#47; for each file
+      } &#47;&#47; of each wildcard target
+    } &#47;&#47; of each section
+  } catch (ex) {
+    print(&#39;EXCEPTION $ex&#39;);
+  }
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    launch_icon
+      0.1.0
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../static-assets/typeahead.bundle.min.js"></script>
+<script src="../static-assets/highlight.pack.js"></script>
+<script src="../static-assets/URI.js"></script>
+<script src="../static-assets/script.js"></script>
+
+
+</body>
+
+</html>
