@@ -49,3 +49,7 @@ the different platforms mature.
 
 3. All image manipulation is courtesy of package 'image' by Brendan Duncan and those are the file types supported.
 
+4. This utility can be installed with the command
+```
+ pub global activate -sgit https://github.com/chris-reynolds/launch_icon 
+ ```
