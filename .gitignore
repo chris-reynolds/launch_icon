@@ -12,3 +12,4 @@ build/
 
 #Android Studio
 .idea/
+test/assets/Thumbs.db

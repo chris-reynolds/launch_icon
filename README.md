@@ -13,14 +13,14 @@ The source and target file specifications are read from the pubspec.yaml file an
 
 Below is simple example of an icon being push across android,ios,macos and web.
 ```
-    launch_icon:
-      source: ../aopicons/album2_icon.png
-      target:
-        - */AppIcon*.png
-        - web/*/Icon*.png
-        - web/favicon.png
-        - android/*/ic_launcher*.png
-        
+launch_icon:
+  source: assets/sync.jpg
+  target:
+    - ios/Runner/*/app_icon*.png
+    - macos/Runner/*/app_icon*.png
+    - web/icons/Icon*.png
+    - web/favicon.png
+    - android/*/ic_launcher*.png       
         
 ```
 
@@ -31,7 +31,8 @@ will parse multiple sections in pubspec.yaml as seen below.
 launch_icon_ios_macos_and_web:
   source: ../aopicons/album2_icon.png
   target:
-    - */AppIcon*.png
+    - ios/Runner/*/app_icon*.png
+    - macos/Runner/*/app_icon*.png
     - web/*/Icon*.png
     - web/favicon.png
 
@@ -43,7 +44,7 @@ launch_icon_android:
 ```
 
 ### Note
-1. These paths were correct for Flutter 1.21.0 but of course you may need to adapt the paths as
+1. These paths were correct for Flutter 1.26.0 but of course you may need to adapt the paths as
 the different platforms mature.
 2. The utility must be run from the flutter project root. (i.e. a local pubspec.yaml must exist)
 
