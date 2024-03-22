@@ -1,4 +1,4 @@
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:launch_icon/launch_icon.dart';
 import 'package:test/test.dart';
@@ -8,12 +8,12 @@ void main() async {
     var sections = loadAndValidatePubspecYaml();
     expect(sections.length, 2);
   });
-  test('can load png',() {
-     var img = loadSourceImage('test/assets/album_icon.jpg');
-     expect(img.length,512*512);
+  test('can load png', () {
+    var img = loadSourceImage('test/assets/album_icon.jpg');
+    expect(img.length, 512 * 512);
   });
-  test('can load png',() {
+  test('can load png', () {
     var img = loadSourceImage('test/assets/album_icon2.png');
-    expect(img.length,512*491);
+    expect(img.length, 512 * 491);
   });
 }

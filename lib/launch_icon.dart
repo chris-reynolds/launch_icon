@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:yaml/yaml.dart';
 import 'package:image/image.dart';
+import 'package:yaml/yaml.dart';
 
 /// main entry of command line utility
 /// It loads the pubspec.yaml sections looking for source and target file specifications.
@@ -16,18 +16,18 @@ void driver(List<String> arguments) {
       print('\nLaunch Icon : $source \n to  $targets}!');
       var sourceImg = loadSourceImage(source);
       for (var target in targets) {
-        var fileList = fullFileList.where((element) => matchPaths(element.path, target));
+        var fileList =
+            fullFileList.where((element) => matchPaths(element.path, target));
         if (fileList.isEmpty) print('No files matching $target');
         for (var targetFile in fileList) {
           replaceIcon(sourceImg, targetFile.path);
-        }  // for each file
+        } // for each file
       } // of each wildcard target
     } // of each section
   } catch (ex) {
     print('EXCEPTION $ex');
   }
 }
-
 
 // PRIVATE
 // Functions below here are public only to allow unit testing.
@@ -36,7 +36,7 @@ void driver(List<String> arguments) {
 Image loadSourceImage(String fileName) {
   var imgFile = File(fileName);
   if (!imgFile.existsSync()) throw '$fileName does not exist as source image';
-  var img = decodeImage(imgFile.readAsBytesSync().toList());
+  var img = decodeImage(imgFile.readAsBytesSync());
   if (img == null) throw '$fileName is not a recognizable image';
   return img;
 } // of loadSourceImage
@@ -47,8 +47,9 @@ Image loadSourceImage(String fileName) {
 bool matchPaths(String currentFilename, String wantedRegex) {
   if (currentFilename.isEmpty || wantedRegex.isEmpty) return false;
   currentFilename = currentFilename.replaceAll('\\', '/');
-  wantedRegex = wantedRegex.replaceAll('*', '.*').replaceAll('?','.');
-  if (currentFilename.startsWith('./')) currentFilename = currentFilename.substring(2); // strip ./
+  wantedRegex = wantedRegex.replaceAll('*', '.*').replaceAll('?', '.');
+  if (currentFilename.startsWith('./'))
+    currentFilename = currentFilename.substring(2); // strip ./
   var wantedMask = RegExp('$wantedRegex', dotAll: true);
   var match = wantedMask.stringMatch(currentFilename);
   return match != null;
@@ -61,7 +62,8 @@ const PUBSPEC = 'pubspec.yaml';
 /// Note that [yamlFilename] is only normally used to ease testing.
 List<dynamic> loadAndValidatePubspecYaml({yamlFilename = PUBSPEC}) {
   var sectionList = <dynamic>[];
-  if (!File(yamlFilename).existsSync()) throw 'Must be in root of flutter project';
+  if (!File(yamlFilename).existsSync())
+    throw 'Must be in root of flutter project';
   try {
     dynamic fullYaml = loadYaml(File(yamlFilename).readAsStringSync());
     for (var iconSection in fullYaml.entries) {
@@ -76,7 +78,8 @@ List<dynamic> loadAndValidatePubspecYaml({yamlFilename = PUBSPEC}) {
         sectionList.add(iconSection.value);
       }
     }
-    if (sectionList.isEmpty) throw 'launch_icon section is missing from $PUBSPEC';
+    if (sectionList.isEmpty)
+      throw 'launch_icon section is missing from $PUBSPEC';
     return sectionList;
   } catch (ex) {
     throw 'Failed to parse $PUBSPEC \n$ex';
@@ -86,10 +89,11 @@ List<dynamic> loadAndValidatePubspecYaml({yamlFilename = PUBSPEC}) {
 /// replaceIcon() is used when a target icon is found. It gets the size from the target and then rewrites it
 /// with a resized version of the source.
 void replaceIcon(Image sourceImg, String targetFile) {
-  var targetImg = decodeImage(File(targetFile).readAsBytesSync().toList());
+  var targetImg = decodeImage(File(targetFile).readAsBytesSync());
   if (targetImg == null) print('Unrecognised image ${targetFile}');
-  var newImage = copyResize(sourceImg, width: targetImg.width, height: targetImg.height);
-  var newBytes = encodeNamedImage(newImage, targetFile);
+  var newImage =
+      copyResize(sourceImg, width: targetImg!.width, height: targetImg.height);
+  var newBytes = encodeNamedImage(targetFile, newImage)!.toList();
   File(targetFile).writeAsBytesSync(newBytes);
   print('replaced $targetFile');
 } // of replaceIcon
