@@ -4,9 +4,9 @@ A command-line app to help change a flutter application icon regardless of platf
 
 Each platform seems to have several copies of the application icon at different sizes.
 
-The launch_icon utility searches for images in a flutter project that that match some target wild-card specfication  
+The launch_icon utility searches for images in a flutter project that that match some target wild-card specification  
 and then for each matching image, it reads the width and height and replaces the image  
-with a clone of the source iamge resized to match the target.
+with a clone of the source image resized to match the target.
 
 The source and target file specifications are read from the pubspec.yaml file and any sections that start with
 'launch_icon' will be examined for source and targets.
@@ -20,7 +20,8 @@ launch_icon:
     - macos/Runner/*/app_icon*.png
     - web/icons/Icon*.png
     - web/favicon.png
-    - android/*/ic_launcher*.png       
+    - android/*/ic_launcher*.png 
+    - windows/*/ic_launcher*.png      
         
 ```
 
@@ -29,7 +30,7 @@ will parse multiple sections in pubspec.yaml as seen below.
 
 ```
 launch_icon_ios_macos_and_web:
-  source: ../aopicons/album2_icon.png
+  source: ../aopicons/album_i_icon.png
   target:
     - ios/Runner/*/app_icon*.png
     - macos/Runner/*/app_icon*.png
@@ -37,7 +38,7 @@ launch_icon_ios_macos_and_web:
     - web/favicon.png
 
 launch_icon_android:
-  source: ../aopicons/album2_icon.png
+  source: ../aopicons/album_a_icon.png
   target:
     - android/*/ic_launcher*.png
     
