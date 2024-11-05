@@ -53,5 +53,5 @@ the different platforms mature.
 
 4. This utility can be installed with the command
 ```
- pub global activate -sgit https://github.com/chris-reynolds/launch_icon 
+ dart pub global activate -sgit https://github.com/chris-reynolds/launch_icon 
  ```
