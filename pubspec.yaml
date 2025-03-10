@@ -9,7 +9,7 @@ executables:
   launch_icon: launch_icon
 dependencies:
   image: ^4.1.7
-#  path: ^1.6.0
+# #  path: ^1.6.0
   yaml: ^3.1.2
 
 dev_dependencies:
